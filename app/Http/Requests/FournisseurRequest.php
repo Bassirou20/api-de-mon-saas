@@ -22,7 +22,21 @@ class FournisseurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom'=>'required|max:256|unique:fournisseurs',
+            'adresse'=>'required',
+            'contact'=>'required|unique:fournisseurs',
+            'description'=>'nullable|max:400',
+            'image'=>'nullable'
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'nom.unique'=>'ce fournisseur existe déjà',
+            'contact.unique'=>'ce contact existe déjà',
+            // 'image.image' => 'Le fichier doit être une image',
         ];
     }
 }

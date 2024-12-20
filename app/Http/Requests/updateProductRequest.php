@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProduitRequest extends FormRequest
+class updateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,25 +22,23 @@ class ProduitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'libelle' => 'required|string|max:255',
-            'quantite' => 'required',
-            'prix' => 'required',
-            'prix_achat' => 'nullable',
-            'fournisseur_id' => 'required|exists:fournisseurs,id',
-            'categorie_id' => 'required|exists:categories,id',
+            'libelle' => 'nullable|string|max:255',
+            'quantite' => 'nullable|integer',
+            'prix' => 'nullable|numeric',
+            'fournisseur_id' => 'nullable|exists:fournisseurs,id',
+            'categorie_id' => 'nullable|exists:categories,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ];
     }
 
-
     public function messages()
     {
         return [
-            'libelle.required' => 'Le libellé est requis',
-            'quantite.required' => 'La quantité est requise',
-            'prix.required' => 'Le prix est requis',
-            'fournisseur_id.required' => 'Le fournisseur est requis',
+            'libelle.max' => 'Le libellé ne doit pas dépasser 255 caractères',
+            'quantite.integer' => 'La quantité doit être un nombre entier',
+            'prix.numeric' => 'Le prix doit être un nombre',
             'fournisseur_id.exists' => 'Le fournisseur sélectionné est invalide',
+            'categorie_id.exists' => 'La catégorie sélectionnée est invalide',
             'image.image' => 'Le fichier doit être une image',
         ];
     }

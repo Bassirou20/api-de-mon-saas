@@ -15,6 +15,7 @@ class Dette extends Model
     const STATUT_EN_COURS = 'en cours';
     const STATUT_REGLE = 'règlement effectué';
     const STATUT_IMPAYE = 'impayé';
+    const STATUT_REGULARISEE = 'règlement régularisé';
 
 
     public function client()

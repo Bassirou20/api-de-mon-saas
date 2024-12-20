@@ -22,7 +22,7 @@ class CommandeRequest extends FormRequest
         public function rules(): array
         {
             return [
-            'client_id' => 'sometimes|exists:users,id',
+            'client_id' => 'nullable|exists:users,id',
             'livreur_id' => 'nullable|exists:users,id',
             'statut' => 'in:en attente,en cours,annulée,livré,récupéré|nullable',
             'mode_paiement' => 'in:en espèce,Wave,Orange-Money,carte,paypal|nullable',

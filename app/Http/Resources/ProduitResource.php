@@ -19,10 +19,14 @@ class ProduitResource extends JsonResource
         'libelle'=>$this->libelle,
         'description'=>$this->description,
         'prix'=>$this->prix,
+        'prix_achat'=>$this->prix_achat,
         'quantite'=>$this->quantite,
-        'image'=> $this->image ? asset($this->image) : null,
+        'image' => $this->image ? url($this->image) : null,
         'fournisseur' => new FournisseurResource($this->whenLoaded('fournisseur')),
-        'categorie'=>$this->categorie ?  $this->categorie->libelle : null,
+        'categorie' => $this->categorie ? [
+            'id' => $this->categorie->id,
+            'libelle' => $this->categorie->libelle
+        ] : null,
         'date_ajout'=>$this->created_at->format('d-m-y'),
         'updated_at'=>$this->updated_at->format('d-m-y H:i:s'),
         'quantity' => isset($this->pivot) ? $this->pivot->quantite : 0,

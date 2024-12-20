@@ -19,7 +19,8 @@ class FournisseurResource extends JsonResource
             'nom' => $this->nom,
             'adresse' => $this->adresse,
             'contact' => $this->contact,
-            'description' => $this->description
+            'description' => $this->description,
+            'image' => $this->image ? asset($this->image) : null,
         ];
     }
 }

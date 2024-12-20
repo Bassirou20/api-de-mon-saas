@@ -29,6 +29,7 @@ class UserController extends Controller
         return response()->json($clients);
     }
 
+    
 
     public function getLivreurs()
     {
@@ -83,4 +84,14 @@ class UserController extends Controller
     {
         //
     }
+
+    public function toggleActiveStatus($id)
+{
+    $user = User::findOrFail($id);
+    $user->isActive = !$user->isActive;  
+    $user->save();
+
+    return response()->json(['message' => 'User status updated successfully', 'statut' => $user->statut]);
+}
+
 }
